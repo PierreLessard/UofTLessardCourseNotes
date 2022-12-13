@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.8.28) (preloaded format=pdflatex 2022.9.15)  12 DEC 2022 23:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.8.28) (preloaded format=pdflatex 2022.9.15)  13 DEC 2022 18:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1214,6 +1214,7 @@ Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 (csc343Complete.toc
 Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
 )
 \tf@toc=\write5
 \openout5 = `csc343Complete.toc'.
@@ -1237,6 +1238,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 32--32
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 35--36
+
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 56--57
 
  []
@@ -1253,7 +1259,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 180--180
 
  []
 
-[4] [5] [6] [7] [8] (csc343Complete.aux)
+[4] [5] [6] [7] [8]
+Underfull \hbox (badness 10000) in paragraph at lines 452--454
+
+ []
+
+[9]
+Chapter 2.
+[10
+
+] [11] [12] [13] [14]
+Underfull \hbox (badness 10000) in paragraph at lines 729--730
+
+ []
+
+[15] [16] [17] [18] (csc343Complete.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.5pt have occurred.
@@ -1263,17 +1283,17 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 37275 strings out of 475389
- 755755 string characters out of 2777000
- 1173579 words of memory out of 3000000
- 57928 multiletter control sequences out of 15000+600000
- 499549 words of font info for 115 fonts, out of 8000000 for 9000
+ 37516 strings out of 475389
+ 759178 string characters out of 2777000
+ 1173793 words of memory out of 3000000
+ 58058 multiletter control sequences out of 15000+600000
+ 510211 words of font info for 147 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 96i,9n,102p,813b,1718s stack positions out of 10000i,1000n,20000p,200000b,80000s
- <C:\Users\Lessa\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/Lessa/AppData/Local/Programs/MiKTeX/fonts/type1/public/newpx/NewPXMI.pfb><C:/Users/Lessa/AppData/Local/Programs/MiKTeX/fonts/type1/public/newpx/NewPXMI_gnu.pfb><C:/Users/Lessa/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/Lessa/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Lessa/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Lessa/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/Lessa/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/Lessa/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Lessa/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/Lessa/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/Lessa/AppData/Local/Programs/MiKTeX/fonts/type1/public/newpx/pxmiaX.pfb><C:/Users/Lessa/AppData/Local/Programs/MiKTeX/fonts/type1/public/newpx/pxsys.pfb>
-Output written on csc343Complete.pdf (9 pages, 195692 bytes).
+ 96i,18n,102p,847b,1720s stack positions out of 10000i,1000n,20000p,200000b,80000s
+ <C:\Users\Lessa\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk> <C:\Users\Lessa\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm0900.pk><C:/Users/Lessa/AppData/Local/Programs/MiKTeX/fonts/type1/public/newpx/NewPXMI.pfb><C:/Users/Lessa/AppData/Local/Programs/MiKTeX/fonts/type1/public/newpx/NewPXMI_gnu.pfb><C:/Users/Lessa/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/Lessa/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Lessa/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx7.pfb><C:/Users/Lessa/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Lessa/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/Lessa/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/Lessa/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Lessa/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/Lessa/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmss10.pfb><C:/Users/Lessa/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Users/Lessa/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/Lessa/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/Lessa/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb><C:/Users/Lessa/AppData/Local/Programs/MiKTeX/fonts/type1/public/newpx/pxmiaX.pfb><C:/Users/Lessa/AppData/Local/Programs/MiKTeX/fonts/type1/public/newpx/pxsys.pfb><C:/Users/Lessa/AppData/Local/Programs/MiKTeX/fonts/type1/public/txfonts/txsya.pfb>
+Output written on csc343Complete.pdf (19 pages, 359261 bytes).
 PDF statistics:
- 223 PDF objects out of 1000 (max. 8388607)
- 40 named destinations out of 1000 (max. 500000)
- 223 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 553 PDF objects out of 1000 (max. 8388607)
+ 137 named destinations out of 1000 (max. 500000)
+ 503 words of extra memory for PDF output out of 10000 (max. 10000000)
 

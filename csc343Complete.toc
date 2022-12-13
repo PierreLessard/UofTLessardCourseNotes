@@ -1,12 +1,33 @@
 \contentsline {chapter}{\numberline {1}Relations}{2}{chapter.1}%
 \contentsline {section}{\numberline {1.1}The Relational Model}{2}{section.1.1}%
-\contentsline {section}{\numberline {1.2}Relational Algebra}{2}{section.1.2}%
-\contentsline {subsubsection}{Projection}{3}{section*.2}%
-\contentsline {subsubsection}{Selection}{3}{section*.3}%
-\contentsline {subsubsection}{Cartesian Product}{3}{section*.4}%
-\contentsline {subsubsection}{Natural Join}{5}{section*.5}%
-\contentsline {subsubsection}{Assignment and Rename}{5}{section*.6}%
-\contentsline {subsection}{\numberline {1.2.1}Set Operations on Relations}{7}{subsection.1.2.1}%
-\contentsline {section}{\numberline {1.3}Integrity Constraints}{8}{section.1.3}%
-\contentsline {subsubsection}{Referential Integrity Constraints}{8}{section*.7}%
+\contentsline {section}{\numberline {1.2}Relational Algebra}{3}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Projection}{3}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.2}Selection}{3}{subsection.1.2.2}%
+\contentsline {subsection}{\numberline {1.2.3}Cartesian Product}{3}{subsection.1.2.3}%
+\contentsline {subsection}{\numberline {1.2.4}Natural Join}{5}{subsection.1.2.4}%
+\contentsline {subsection}{\numberline {1.2.5}Assignment and Rename}{5}{subsection.1.2.5}%
+\contentsline {subsection}{\numberline {1.2.6}Set Operations on Relations}{7}{subsection.1.2.6}%
+\contentsline {subsection}{\numberline {1.2.7}Advanced Relational Algebra Queries}{8}{subsection.1.2.7}%
+\contentsline {subsubsection}{Impossible Queries}{8}{section*.2}%
+\contentsline {subsubsection}{Extremal Queries}{8}{section*.3}%
+\contentsline {section}{\numberline {1.3}Integrity Constraints}{9}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}Referential Integrity Constraints}{9}{subsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.3.2}Broad Integrity Constraints}{9}{subsection.1.3.2}%
+\contentsline {chapter}{\numberline {2}Design Theory}{10}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Functional Dependency Theory}{10}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Principles of Functional Dependencies}{11}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Attribute Closure}{11}{subsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.1.3}Projection of Functional Dependencies}{12}{subsection.2.1.3}%
+\contentsline {subsection}{\numberline {2.1.4}Minimal Basis}{13}{subsection.2.1.4}%
+\contentsline {section}{\numberline {2.2}Normalization}{14}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Boyce-Codd Normal Form}{14}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Lossless Join and Dependency Preservation}{15}{subsection.2.2.2}%
+\contentsline {subsubsection}{Lossless Join}{15}{section*.4}%
+\contentsline {subsubsection}{Dependancy Preservation}{15}{section*.5}%
+\contentsline {subsection}{\numberline {2.2.3}Keys in Terms of Functional Dependencies}{16}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.4}3rd Normal Form}{16}{subsection.2.2.4}%
+\contentsline {section}{\numberline {2.3}Testing Relational Properties}{17}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Validating Lossless Join}{17}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Checking Redundancy}{18}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}Validating Functional Dependency Preservation}{18}{subsection.2.3.3}%
 \contentsfinish 
