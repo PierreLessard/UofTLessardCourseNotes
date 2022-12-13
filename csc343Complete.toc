@@ -5,7 +5,8 @@
 \contentsline {subsubsection}{Selection}{3}{section*.3}%
 \contentsline {subsubsection}{Cartesian Product}{3}{section*.4}%
 \contentsline {subsubsection}{Natural Join}{5}{section*.5}%
-\contentsline {subsubsection}{}{5}{section*.6}%
-\contentsline {section}{\numberline {1.3}Integrity Constraints}{5}{section.1.3}%
-\contentsline {subsubsection}{Referential Integrity Constraints}{6}{section*.7}%
+\contentsline {subsubsection}{Assignment and Rename}{5}{section*.6}%
+\contentsline {subsection}{\numberline {1.2.1}Set Operations on Relations}{7}{subsection.1.2.1}%
+\contentsline {section}{\numberline {1.3}Integrity Constraints}{8}{section.1.3}%
+\contentsline {subsubsection}{Referential Integrity Constraints}{8}{section*.7}%
 \contentsfinish 

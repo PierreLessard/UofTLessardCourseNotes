@@ -249,7 +249,137 @@ This example shows two tables R and S, which are joined using the natural join o
         \end{itemize}
 
 
-        \subsubsection{}
+        \subsubsection{Assignment and Rename}
+
+        When operating with many relations and results of operations it is helpful to assign new names to said results. By assigning names to results we are able to recall previous operations with limited redundancy. The assignment operations is used in this case. The operation uses the $:=$ operator.
+
+        \dfn{Assignment}{
+            For any given relational expression, $E$, with resulting attributes $n$ resulting attributes, an assignment is as follows:
+            \begin{equation*}
+                R(A_1, \dots, A_n) := E
+            \end{equation*}
+
+            Where $R$ is the name of the new assigned relation, and $A_1, \ldots, A_n$ are the new (or original) names of the attributes. 
+        }
+
+        In multi-step operations of relational algebra, the assignment operation saves space and time rewriting redundant operations. Renaming attributes is important when joining two instances of the same relation. An important thing to note is that the name of the new assigned relation $R$, must not be one of the relations in the schema. Assignment is \textbf{not} equivalent or used to update relations. \vspace{.5cm}
+         
+         \par It is also possible to assign names to an instance of a relation in an operation. This is different from what the assignment operations does, which is save a result for later use. The rename operator, using the greek symbol $\rho$, rho, is meant to alleviate ambiguity when relational algebra references an attribute that may come from multiple results. 
+         \ex{}{
+            Let $R$ be a relation with schema $R(A,B)$. \\
+            For this example $R$ will have two tuples $(1,1),(0,0)$. Observe the following operation:
+                \begin{equation*}
+                    \sigma_{A=B}(R \times R)
+                \end{equation*}
+            If $A$ references the attribute from the left hand side of the product, and $B$ references the right, then the resulting relation is empty. However, if both variables reference the left side then the resulting relation has the maximum cardinality of 4. \\
+            This example is simple yet demonstrates the potential ambiguity that may be present during a more complicated combination of operations.  For this reason we have the renaming operator
+         }
+\vspace{.5cm}
+ 
+         \dfn{Rename}{
+            To rename an instance of a relation, inside of an expression, the $\rho$ symbol can be used with a new name referenced in the subscript. Any following usage of an attribute preceded by the new name and a dot will reference the attributes of the renamed instance. Note this is only for the expression where the relation is renamed. Renaming any relation $R$, with name $T$, is denoted as \begin{equation*}
+                \rho_T R
+            \end{equation*}
+            Specifying attributes, is possible through following $T$ with new attribute names enclosed in parenthesis. 
+         }
+\vspace{.5cm}
+ 
+\ex{}{Following the previous example, the ambiguity can be removed by specifying a name for each relation.
+\begin{equation}
+    \sigma_{R_1.A=R_2.B}(\rho_{R_1} R \times \rho_{R_2} R)
+\end{equation}
+\begin{equation}
+    \sigma_{R_1.A=R_1.B}(\rho_{R_1} R \times \rho_{R_2} R)
+\end{equation}
+The operation in $(1.1)$ now definitely produces the empty relation, $\{\}$, and the operation in $(1.2)$ produced the every possible combination from $R\times R$}
+
+
+\subsection{Set Operations on Relations}
+    The final important operation on relations directly follows from relations being defined as set adjacent. This means that the main set operations are possible and very applicable to relations. 
+
+    Set operations such as union, intersection, and difference can be used in relational algebra. Set operations allow you to combine two or more relations to form a new relation, based on the criteria specified in the set operation. A caveat is that the two relations being operated on must agree on the number, name, and order of attributes. This ensures the rules of set relations directly apply.
+
+    \dfn{Relational Algebra Set Operations}{
+        Given two relations $R_1$ and $R_2$, where the attributes of $R_1$ and $R_2$ agree in order, name, and number (the schemas are the same), then the following set operations from set theory are applicable:
+        \begin{itemize}
+            \item Union: $\cup$
+            \item Intersect: $\cap$
+            \item Difference: $-$
+        \end{itemize}
+    }
+
+\vspace{.5cm}
+ 
+        \ex{}{
+
+        Suppose we have two relations, R and S, with the following attributes and tuples:
+        \begin{center}
+            \begin{tabular}{c c c}
+                A & B & C \\
+                \hline
+                1 & 2 & 3 \\
+                4 & 5 & 6 \\
+                7 & 8 & 9 \\
+                \end{tabular}
+                \noindent \hspace{1cm}
+                \begin{tabular}{c c c}
+                A & B & C \\
+                \hline
+                1 & 4 & 7 \\
+                2 & 5 & 8 \\
+                3 & 6 & 9 \\
+                \end{tabular}
+        \end{center}
+            The operation, $R \cup S$, results in the following table:
+            
+            \begin{center}
+                \begin{tabular}{c c c}
+                    A & B & C \\
+                    \hline
+                    1 & 2 & 3 \\
+                    4 & 5 & 6 \\
+                    7 & 8 & 9 \\
+                    1 & 4 & 7 \\
+                    2 & 5 & 8 \\
+                    3 & 6 & 9 \\
+                    \end{tabular}
+            \end{center}
+    
+                
+        }
+        \vspace{.5cm}
+
+        As is obvious from the example, the relations must have equal attributes. Otherwise, a set operation is not applicable. The same can be seen for the similar example of the intersect set operation:
+
+        \ex{}{
+
+        \begin{center}
+            \begin{tabular}{c|c}
+                A & B \\
+                \hline
+                1 & 2 \\
+                3 & 4 \\
+                5 & 6
+                \end{tabular}
+                $\cap$
+                \begin{tabular}{c|c}
+                A & B \\
+                \hline
+                3 & 4 \\
+                5 & 7 \\
+                9 & 8
+                \end{tabular}
+                =
+                \begin{tabular}{c|c}
+                A & B \\
+                \hline
+                3 & 4
+                \end{tabular}
+    
+        \end{center}
+            In this example, we have two relations, A and B, and the resulting table after performing the intersect operation contains only the tuple (3, 4), since it is the only tuple that appears in both of the original tables.
+        }
+         
 
 
 
@@ -276,7 +406,7 @@ This example shows two tables R and S, which are joined using the natural join o
      
      \vspace{.5cm}
       
-      \par Referential Integrity Constraints are important in defining the relationship between two relations. When $Y$ is a key we call the referential integrity constraint a \textbf{Foreign Key Constraint} 
+      \par Referential Integrity Constraints are important in defining the relationship between two relations. When $Y$ is a key we call the referential integrity constraint a \textbf{Foreign Key Constraint}. 
 
 
 
