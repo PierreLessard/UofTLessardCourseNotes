@@ -41,4 +41,6 @@
 \contentsline {section}{\numberline {3.3}Keys in Entity/Relationship Models}{22}{section.3.3}%
 \contentsline {subsubsection}{Keys For Relationship Sets}{22}{section*.11}%
 \contentsline {section}{\numberline {3.4}From E/R Model to Database Schema}{23}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}E/R Model Restructuring}{23}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Translating E/R Models to Database Schemas}{24}{subsection.3.4.2}%
 \contentsfinish 

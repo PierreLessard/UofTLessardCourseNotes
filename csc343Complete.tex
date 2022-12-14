@@ -4,9 +4,9 @@
 \input{macros}
 \input{letterfonts}
 
-\title{\Huge{CSC343}\\Course Notes}
-\author{\huge{Pierre-William Lessard}}
-\date{}
+\title{\Huge{CSC343}}
+\author{Pierre's Guide}
+\date{\huge{Fall 2022}}
 
 
 \begin{document}
@@ -1014,7 +1014,7 @@ For a foreign key of an entity to come through a relationship, that entity must 
 
 
 \section{From E/R Model to Database Schema}
-
+\subsection{E/R Model Restructuring}
 The obvious next step after creating an Entity/Relationship model that one is happy with is to create a database schema from it. Before converting a model to a schema it is important to ensure that the model is in the correct preferred structure for a schema. If it is not we can restructure it as follows:
 
 \begin{enumerate}
@@ -1027,8 +1027,27 @@ The obvious next step after creating an Entity/Relationship model that one is ha
         across all students in the world. This is a case where foreign keys are required.
     }
     \item \textbf{Ensuring Keys Are Applicable to Schemas} This means that we must ensure that keys are applicable to schemas. Obviously this means any attributes that may be part of keys can not become or assume \textbf{NULL} values. Then there are other preferable qualities such as ensuring that keys have the minimum number of attributes and integers.
-    \item \textbf{Removing Attributes with Cardinality > 1} It is not possible to have a container type for attributes. This means that any attribute that has been indicated as being able to support multiple entries, should be turned into a single entity.
+    \item \textbf{Removing Attributes with Cardinality $>$ 1} It is not possible to have a container type for attributes. This means that any attribute that has been indicated as being able to support multiple entries, should be turned into a single entity.
 \end{enumerate}
+
+
+\subsection{Translating E/R Models to Database Schemas}
+
+The next step to creating a Schema from an E/R model, after restructuring the model, involves translating the model. The thought process behind translating involves simply converting every relationship and entity to its own relation. The complicated part revolves around choosing keys, expressing cardinalities through Referential Integrity Constraints, and potentially squashing relationships into entities. The main consideration with translating E/R models is that there are many ways to translate and some decisions are up to the designer and the context of the database. The design decisions to consider depend on cardinalities:
+
+\begin{description}
+    \item [Many-to-Many Relationships:] In these cases we have two entities connected with a relationship, where both entities' cardinality with the relationship has no maximum. The relationship should be represented with a relation, where the key's of the relation are the union of the keys of the two entities. Foreign Key Constraints are needed to ensure that the relationship's key's sub-parts are subsets of the entities' keys. 
+    \item [Many-to-Many Recursive Relationships:] In this case we have a relationship with an $N$-to-$N$ multiplicity yet connects an entity with itself. The relationship should be a relation whose key is a combination of the number of recursive connections the entity has. Then use a foreign key constraint. It is also important to add an integrity constraint if the recursive relationship is not meant to be between two tuples with the same key. 
+    \item \begin{note}
+        Many-to-Many relationships are convenient in that they do not need to be simplified and usually can be clearly translated. Ternary Relationships are the same.
+    \end{note}
+    \item [Mandatory Relationships:] These relationships can be represented with their own relation. If they are it is important to make the referential integrity constraint go in both directions to ensure that the set of attributes for the entity's key and the relationship's key is equal. 
+    \item [(1,1) Cardinality:] In this case we have a 1-to-1 relationship between the entity and it's relationship. If needed we can choose to use the method from the mandatory relationship, otherwise we can choose to squash the relationship into the entity. This is possible without nulls since every tuple of the relationship must have a corresponding tuple in the entity's relation, meaning that we can simply union the attributes.
+\end{description}
+
+\begin{note}
+    E/R Model designs are subjective as there is usually not a clear \textit{right} answer. Instead it is just important to be purposeful in the design as everything should have a clear reason. Redundancy is a point of contention, because redundancy does improve query speeds yet increases the storage cost.
+\end{note}
 
 
 
