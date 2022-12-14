@@ -4,7 +4,7 @@
 \input{macros}
 \input{letterfonts}
 
-\title{\Huge{CSC343}\\Guide}
+\title{\Huge{CSC343}\\Course Notes}
 \author{\huge{Pierre-William Lessard}}
 \date{}
 
@@ -16,7 +16,6 @@
     \pdfbookmark[section]{\contentsname}{toc}
     \tableofcontents
     \pagebreak
-
 
 
     \chapter{Relations}
@@ -901,17 +900,135 @@ Redundancy is unfortunately ill-defined, meaning it is difficult to fully unders
 A simple way to validate that functional dependencies are preserved between the original relation and the decomposed relation is by first projecting all the functional dependencies of the original relation on the new relation. The obvious way to check preservation is to compare the the FDs of the new and original schema and see if there are any missing in the new relation. This can leave room for errors as it is not always easy to track if relations are the same. A more methodical method is to calculate the minimal basis of each set of FDs, if they are the same the functional dependencies are preserved.
 
 
+\chapter{The Entity/Relationship Model}
+The Entity/Relationship Model is a way to model and conceptualize databases. The model conceptualizes databases by categorizing autonomous entities and their relationships, while still specifying attributes and bounds to said entities. Entity/Relationship Models are usually done prior to constructing a schema in order to understand what the structure of the database will look, prior to directly defining what the relations will be.
+
+
+
+\section{Basic Elements of a Model}
+\subsubsection{Entity Sets}
+
+\hspace{.5cm} An entity set is meant to represent a category of objects that have properties in common. This is represented with a rectangle and the name of said object inside of it:
+
+\includegraphics{2022-12-13-19-59-13.png}
+
+
+\subsubsection{Relationships Sets}
+
+\hspace{.5cm} A relationship set represents an association between $2+$ entity sets. It is represented with a diamond with lines connected to the entity sets it is directly associated with. The diamond is similar to the entity set as it includes the name of the relationship inside the diamond:
+
+\includegraphics[scale=.7]{2022-12-13-20-09-52.png}
+
+\subsubsection{Attributes}
+
+\hspace{.5cm} Attributes describe the elementary properties of the elements of a model. These are notated with a line protruding from an entity, with a small circle labelling the attribute:
+
+\includegraphics[scale=.7]{2022-12-13-20-16-19.png}
+
+\subsubsection{Composite Attributes}
+
+\hspace{.5cm} Composite Attributes are just groupings of similar attributes to improve clarity:
+
+\includegraphics[scale=.7]{2022-12-13-20-17-36.png}
+
+\subsubsection{Keys}
+
+\hspace{.5cm} Keys are denoted in entities by filled in circles, in the case of a one attribute key, or a line with a ``knob'':
+
+\includegraphics[scale=.7]{2022-12-13-20-19-34.png}
 
 
 
 
+\begin{note}
+    The graphics from this chapter are taken from the \textbf{ER-part1} slides, created by Manos Papagelis, Ryan Johnson, John Mylopoulos, 
+    Arnold Rosenbloom, Renee Miller and Diane Horton.
+\end{note}
 
 
+\section{Cardinalities of Entity Relationships}
+
+Cardinalities allow us to further describe how a relationship interacts with the entities it is connected to. Sometimes it is important to describe that there should be a certain amount, or range, of relationships for each tuple in an entity. These cardinalities are represented with a tuple, $(min, max)$, where the left hand side indicates the minimum number of relationships for a tuple, and the right indicates the maximum. We include this tuple on the line directly leaving the entity whose tuples' number of relationships we are describing:
+
+\begin{center}
+    \includegraphics[scale = .75]{2022-12-13-20-30-47.png}
+\end{center}
+
+The cardinality can be interpreted with the following:\\
+For minimum cardinality: (\textbf{min}, max):
+\begin{enumerate}
+    \item $0$: tuples in this entity do not need a relationship, the relationship is \textbf{optional}
+    \item $\geq1$: tuples must have at least the minimum number of relationships, the relationship is \textbf{mandatory}
+\end{enumerate}
+For maximum cardinality: (min, \textbf{max}):
+\begin{enumerate}
+    \item $0$: this makes no sense
+    \item $1$: tuples must have at most one relationship, meaning all relationships are \textbf{unique}
+    \item $>1$: tuples may have up to the maximum number of relationships, and hence can be associated with \textbf{multiple} instances
+    \item $N$: tuples have no upper limit of relationships
+\end{enumerate}
+
+\vspace{.5cm}
+ 
+\dfn{Multiplicity of Relationships}{
+    The multiplicity of a relationship describes the maximum number of relationships for each entity. Let $E_1$ and $E_2$ be two entities participating in a relationship $R$ with cardinalities $(n_1, N_1)$ and $(n_2, N_2)$ respectively. \\
+    The multiplicity of $R$ is defined as $N_1$-to-$N_2$ or $N_2$-to-$N_1$ equivalently. 
+}
+\vspace{.5cm}
+ 
+
+\begin{note}
+    Cardinalities can also be used to describe the number of instances of a specific attribute. This has been omitted as it is usually an indication of a model which needs another relationship and entity to describe the multiplicity of said attribute. 
+\end{note}
 
 
+\section{Keys in Entity/Relationship Models}
+
+As described in section in the earlier section on the basic elements on an Entity/Relationship Model, keys are represented in models with a filled circle or line with a knob. Where all attributes pierced by the line are a part of the key for the entity. In most cases, keys are unique to the entity and considered internal keys:
+
+\begin{center}
+    \includegraphics[scale=.85]{2022-12-13-20-57-04.png}
+\end{center}
+
+In some cases, keys are not strictly internal. This occurs when another entity sets do not have a key and must depend on another entities keys. To indicate this there is a line from the previous key extending to the line between the relationship and entity:
+
+\begin{center}
+    \includegraphics[scale=.8]{2022-12-13-21-00-54.png}
+\end{center}
+
+\dfn{Weak Entity Set}{
+    An entity set is defined as weak when there is an entity who does not have a key among its own attributes. This means it depends on another entities or relationships key, requiring a foreign key. 
+}
+
+\subsubsection{Keys For Relationship Sets}
+Often the key for a relationship is not explicit and is instead inferred from the entities it is connected to. This means its key is the union of all the entity's it is connected to's keys. The following example describes this:
+
+\begin{center}
+    \includegraphics[scale=.7]{2022-12-13-21-18-41.png}
+\end{center}
+
+\ex{}{
+    The Entity/Relationship Model above describes the parts made by a manufacturer. Since each entity has a key, we infer the key of the \textbf{Made By} relationship as the keys of the entities it connects: \underline{Part Number} and \underline{Name}
+}
+For a foreign key of an entity to come through a relationship, that entity must have a $(1,1)$ cardinality with the relationship. Otherwise we introduce the key being violated as when more the maximum is greater than one, the key could be duplicated, and when the minimum is less than one, the key can be \textbf{NULL}, both of which are contradictions of it being a key. A foreign key can also reference a key of an entity that is of itself a foreign. The one caveat is there must not be loops. Therefore, there must be at least one internal key in an E/R.
 
 
+\section{From E/R Model to Database Schema}
 
+The obvious next step after creating an Entity/Relationship model that one is happy with is to create a database schema from it. Before converting a model to a schema it is important to ensure that the model is in the correct preferred structure for a schema. If it is not we can restructure it as follows:
+
+\begin{enumerate}
+    \item \textbf{Remove Redundancy} This usually takes form in attributes that reference the same data, across entities. These attributes should be inferrable through relationships. It is also important to not induce redundancy by squashing too many relationships into one entity. This creates redundancy we described in the design theory chapter.
+    \item \textbf{Entity Sets or Attributes?} Sometimes the question is wether to represent data as a separate attribute or as an entity. In some cases the decision is obvious, such as when there is a relationship between two entities where the cardinality of both sides is $(1,1)$ and one of the entities has only one attribute. In this case it is obviously favorable to combine the entities as there will be no redundant information. In cases of $N$-to-$N$ it could create too much functional redundancy by combining the entities. Other cases it is less clear. A good rule of thumb is to only consider squashing entities who's relationship is $1$-to-$something$ and  are more applicable as \textit{details} of another entity than as a unique \textit{thing}. 
+    \item \textbf{Limit Weak Entity Sets} This improves clarity of the model. This can usually done by assigning IDs to entities without a key, but is not always possible:
+    \ex{}{
+        Given two entities \textbf{University} and \textbf{Student} with an \textbf{Enrolled} relationship. Unfortunately there is no unique identifier for students as student numbers between universities could be the same for two different students. Unfortunately, it is unlikely that there could be an 
+        agreement to assign unique student numbers 
+        across all students in the world. This is a case where foreign keys are required.
+    }
+    \item \textbf{Ensuring Keys Are Applicable to Schemas} This means that we must ensure that keys are applicable to schemas. Obviously this means any attributes that may be part of keys can not become or assume \textbf{NULL} values. Then there are other preferable qualities such as ensuring that keys have the minimum number of attributes and integers.
+    \item \textbf{Removing Attributes with Cardinality > 1} It is not possible to have a container type for attributes. This means that any attribute that has been indicated as being able to support multiple entries, should be turned into a single entity.
+\end{enumerate}
 
 
 

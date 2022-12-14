@@ -30,4 +30,15 @@
 \contentsline {subsection}{\numberline {2.3.1}Validating Lossless Join}{17}{subsection.2.3.1}%
 \contentsline {subsection}{\numberline {2.3.2}Checking Redundancy}{18}{subsection.2.3.2}%
 \contentsline {subsection}{\numberline {2.3.3}Validating Functional Dependency Preservation}{18}{subsection.2.3.3}%
+\contentsline {chapter}{\numberline {3}The Entity/Relationship Model}{19}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Basic Elements of a Model}{19}{section.3.1}%
+\contentsline {subsubsection}{Entity Sets}{19}{section*.6}%
+\contentsline {subsubsection}{Relationships Sets}{19}{section*.7}%
+\contentsline {subsubsection}{Attributes}{20}{section*.8}%
+\contentsline {subsubsection}{Composite Attributes}{20}{section*.9}%
+\contentsline {subsubsection}{Keys}{20}{section*.10}%
+\contentsline {section}{\numberline {3.2}Cardinalities of Entity Relationships}{21}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Keys in Entity/Relationship Models}{22}{section.3.3}%
+\contentsline {subsubsection}{Keys For Relationship Sets}{22}{section*.11}%
+\contentsline {section}{\numberline {3.4}From E/R Model to Database Schema}{23}{section.3.4}%
 \contentsfinish 
