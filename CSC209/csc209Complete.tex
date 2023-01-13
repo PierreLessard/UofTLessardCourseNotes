@@ -1,0 +1,284 @@
+\documentclass{report}
+
+\input{preamble}
+\input{macros}
+\input{letterfonts}
+
+\title{ \Huge{CSC209}}
+\author{Pierre's Guide}
+\date{\huge{Fall 2022}}
+
+\definecolor{titlepagecolor}{cmyk}{1,.60,0,.40}
+\definecolor{namecolor}{cmyk}{1,.50,0,.10} 
+\begin{document}
+\begin{titlepage}
+
+    \newgeometry{left=7.5cm} %defines the geometry for the titlepage
+    \pagecolor{myb}
+    \noindent
+    \color{white}
+    \makebox[0pt][l]{\rule{1.3\textwidth}{1pt}}
+    \par
+    \noindent
+    \textbf{\Huge{CSC209}} \textsf{}
+    \vfill
+    \noindent
+    {\huge Pierre's Guide}
+    \vskip\baselineskip
+    \noindent
+    \huge{Fall 2022}
+    \end{titlepage}
+    \restoregeometry % restores the geometry
+    \nopagecolor% Use this to restore the color pages to white
+    % ----------------------------------------------------------------
+
+    \newpage
+    \pdfbookmark[section]{\contentsname}{toc}
+    \tableofcontents
+    \pagebreak
+
+    \chapter{File Systems}
+
+    \section{Basic Shell Commands}
+
+    The basic shell commands are used to navigate around file systems and inspecting files. The basic ones are as follows:
+
+    \begin{itemize}
+        \item \texttt{man}: Provides a manual for any command followed by it.
+        \item \texttt{cd}: Short for \textit{change directory}. Allows navigation between the file system. Following attributes:
+         \begin{itemize}
+            \item \texttt{cd .}: Navigate to the parent directory.
+         \end{itemize}
+        \item \texttt{ls}: Lists the names of files in the given directory.
+         \begin{itemize}
+            \item \texttt{ls -l}: Gives more information (a \textit{long} list). Includes protection information, file owner, number of characters in file, and date time of last change.
+            \item \texttt{ls -a}: Lists all files including hidden files. 
+            \item \texttt{ls -F}: Succeeds all executable files with *.
+            \item \texttt{ls -g}: Like \texttt{-l} but does not show owner.
+            \item \texttt{ls -o}: Like \texttt{-l} but does not show group.
+            \item \texttt{ls -1}: Includes a line per entry in output.
+            \item \texttt{ls -s}: Includes the size of each entry.
+         \end{itemize}
+    \end{itemize}
+    \nt{The options for \texttt{ls} can often be used together}
+
+    \section{Permissions for files}
+
+    The file permissions are indicated at the beginning of a file listing when calling \texttt{ls -l}. The file listing follows this format:
+    \begin{align}
+      \textnormal{\texttt{<type><owner permissions><group permissions><other's permissions>}}
+    \end{align}
+    The possible values for each is the following:
+    \begin{itemize}
+      \item \texttt{type:}
+      \begin{itemize}
+         \item \textit{-:} indicates a regular file
+         \item \textit{d:} indicates a directory
+      \end{itemize}
+      \item \texttt{permissions:} The formatting for each permissions is formatted with three characters. The characters can be \texttt{-} or a character indicating the permissions
+      \begin{enumerate}
+         \item If the first character is \texttt{r} it means that the permission \textbf{read} is granted.
+         \item If the second character is \texttt{w} it means that the permissions \textbf{write} is granted.
+         \item If the third character is \texttt{x} it means that the permission \textbf{executable} is granted.
+      \end{enumerate}
+    \end{itemize}
+
+    \nt{Directories are not allowed to have the executable permissions granted}
+
+
+    \subsection{Changing Permissions}
+
+    The \texttt{chmod} command is used to change permissions on files. It follows the following format:
+    \begin{align}
+      \textnormal{\texttt{chmod <options> <mode> <file>}}
+    \end{align}
+
+    The mode defines the permissions to be changed and to what permission class. It follows the following format in this order:
+    \begin{enumerate}
+      \item \texttt{[ugoa]:} Each letter corresponds to the category of user the permissions should be changed for. Multiple can be used at once. These correlate with the following:
+      \begin{itemize}
+         \item \texttt{u:} File owner
+         \item \texttt{g:} Users who are members of the group
+         \item \texttt{o:} All other users
+         \item \texttt{a:} All users, equivalent to \texttt{ugo}.
+      \end{itemize}
+      \item \texttt{[-+=]:} Defines wether the permissions should be removed, added or set. Only one can be used at a time:
+      \begin{itemize}
+         \item \texttt{-} Removes specified permissions.
+         \item \texttt{+} Grants specified permissions.
+         \item \texttt{=} Changes the current permissions to the specified permissions. If some permissions aren't specified it means those permissions will not be granted. Such as if nothing is after the \texttt{=} then that category of user will be granted no permissions.
+      \end{itemize}
+      \item \texttt{perms:} These are the permissions which will be changed for the user. These use the same lettering system for permissions when displaying. 
+      \item \texttt{[,\dots]:} The comma can be used to change multiple user classes permissions.
+    \end{enumerate}
+
+    \ex{Using \texttt{chmod}}{
+      \vspace{-.4cm}
+       
+      \begin{align*}
+         \textnormal{\texttt{\$ chmod u=rwx,g=r,o= examplefilename}}
+      \end{align*}
+      This would change the permissions for \texttt{examplefilename} such that the owner has read, write and executing permissions, the users in the group have read permissions, and the other users have no permissions.
+    }
+\vspace{-.4cm}
+ 
+\subsubsection{Numeric Method of Permissions}
+    Instead of writing out the permissions, a numeric method can also be used to communicate them. The method follows binary. Instead of a string of letters for permissions we instead convert three bits to a number. The bits correspond to the three main permissions, \texttt{rwx}, in their respective order
+    \ex{Using \texttt{chmod} with numeric permissions}{
+      \vspace{-.4cm}
+       
+      \begin{align*}
+         \textnormal{\texttt{\$ chmod 600 examplefilename}}
+      \end{align*}
+
+      The following command sets the owner's permissions to \texttt{6} which is \texttt{110} in binary. Equivalent to granting \texttt{rw} access. The others are not granted permissions
+    }
+    \nt{A fourth number at the beginning can be used to set \texttt{setui}, \texttt{setgid}, and \texttt{sticky bit} flags. However, this is more advanced and probably is not used in CSC209}
+
+
+\subsection{Operations}
+
+\subsubsection{Using Reference Files}
+
+      The \texttt{--reference} option can be used to copy another files permissions. It follows the following format
+
+      \vspace{-.4cm}
+       \begin{align*}
+         \textnormal{\texttt{\$ chmod --reference=<reference\_file> <file>}}
+       \end{align*}
+      
+       This code projects the permissions of the \texttt{reference\_file} onto \texttt{file}.
+
+       \subsubsection{Recursively Changing File Permissions}
+       To operate on all files and directories under a given directory, the \texttt{-R} option can be used.
+
+       \subsubsection{Changing File Permissions in Bulk}
+       This can be done using the find command, which executes a command on different files in a directory depending on the type. This can be useful when some permission is meant to be granted to all directories but not regular files. The command follows this syntax:
+      \vspace{-.4cm}
+       \begin{align*}
+         \textnormal{\texttt{\$ find <path> -type <type> -exec chmod <options> <permissions> \{\} \textbackslash;}}
+       \end{align*}
+       As you can see the entry for file name is ommited from the \texttt{chmod} command since it is specified by \texttt{find}. The \texttt{<type>} can be \texttt{d} or \texttt{f}, directories and regular files respectively. 
+
+
+
+
+       \chapter{Shell Script and Unix}
+
+       The unix commands and shell script can be very unintuitive. It does not operate similarly like most programming languages do.
+
+
+       \section{Basic Unix Symbols}
+
+       \begin{itemize}
+         \item \textit{$|$} Sends the output of a command to the input of the other. If \texttt{command1 | command2} is run, the output of \texttt{command1} will become the input of \texttt{command2}.
+         \item \texttt{>} Redirects standard output.
+         \item \texttt{<} Redirects standard input.
+         \item \texttt{>>} Redirects and appends standard output.
+         \item \texttt{;} Separate commands on same line.
+         \item \texttt{()} Group commands on the same line.
+         \item \texttt{/} Separator in pathnames.
+         \item \texttt{\textasciitilde} Home directory.
+         \item \texttt{\textasciitilde<user>} The home directory of user.
+         \item \texttt{.} Present working directory.
+         \item \texttt{..} Parent directory.
+         \item \texttt{*} Wildcard match of any number of characters in filename.
+         \item \texttt{?} Wildcard match of exactly one character in filename
+         \item \texttt{[]} Wildcard match of any one character enclosed in brackets.
+         \item \texttt{\&} Process command in background.
+       \end{itemize}
+
+       \section{Shell Basics}
+       \subsection{Redirecting Standard Output/Input}
+       Redirection is a feature in Unix such that when executing a command, you can change the standard input/output devices.
+
+       \subsubsection{Output Redirection}
+
+       The \texttt{>} symbol is used to redirect output (STDOUT).
+       \ex{Output Redirection}{
+         The line \texttt{ls -l > listing} would redirect the output of \texttt{ls -l} into a file named listing. This would not output it to the terminal like usual.
+       }
+       \nt{\texttt{>>} can be used to avoid overwriting by adding to the end of the file.}
+
+       \subsubsection{Input Redirection}
+       The \texttt{<} symbol is used to redirect input (STDIN).
+
+       \subsection{Computing Expressions}
+       Expressions can be computed using the \texttt{expr} command.
+       \ex{Basic Expressions}{
+            The line, \texttt{\$ ./<executable> \$(expr \$num1 + \$num2)}, will input the sum of variables \texttt{num1} and \texttt{num2}
+       }
+       
+
+
+
+
+
+
+    
+
+
+
+    \chapter{C Basics}
+
+    \section{Input Output and Compiling}
+
+    \subsection{Printing Values}
+
+    To print values we have to use the output stream. One way to do this is through the stdio.h library. This library is included in the code using the following line at the beginning of the file:
+    \begin{align}
+      \textnormal{\texttt{\#include <stdio.h>}}
+    \end{align}
+    The function, \texttt{printf}, is used to print strings. String formatting is done by including some indicator in the string, usually in the form of a \texttt{\%} followed by a letter to indicate the type. Then the variable to be inserted is included along the attributes:
+    \begin{itemize}
+      \item \texttt{d}: is used for formatting integer variables, \texttt{i}, can also be used. But \texttt{d} is more often used since it is \textit{integer decimal}
+      \item \texttt{f}: is used for floating-point numbers. Preceding \texttt{f} by a decimal point and an integer will indicate the number of values following the decimal point are to be printed. Example being \texttt{\%.3f} will print whatever value with 3 decimal points.
+    \end{itemize}\vspace{-.5cm}
+     
+    \nt{\texttt{printf} must be used with the correct number of format specifiers as arguments following the string}
+
+
+    \subsection{Compiling from the Command Line}
+    To run C files we must first compile them. We compile files within the shell. Once we have navigated to the directory with the file we want to compile we run the \texttt{gcc} command, followed by the name of the C file we want to compile. This reads the file and creates an executable file, usually called \texttt{a.out}. To run \texttt{a.out} we enter \texttt{./a.out} into the shell. The following options can be used with \texttt{gcc}:
+   \begin{itemize}
+      \item \texttt{-Wall} This compiles the file and includes any warnings or errors encountered during compiling. This option should always be used to avoid issues in the future.
+      \item \texttt{-o <name>} This defines a name for the executable file outputted by compiling. As explained previously, if this is not specified the outputted file is name \texttt{a.out}. The best practice is to always name the \texttt{out} file to be the same as the inputted.
+   \end{itemize}
+
+   If we want to output the data from a ran file into another file we can do the following, \texttt{./<executable> > <file to be outputted to> 2>\&1}
+
+   \subsection{Reading Input}
+   To read input we can use the \texttt{scanf} function. This function requires the same io library as printing, \texttt{stdio.h}. \texttt{scanf} uses the same attribute list as \texttt{printf}, meaning we can also use text formatting with \texttt{\%} and variables following the string.
+   \nt{\texttt{scanf} uses \texttt{\%lf}, long float, instead of \texttt{\%f} when formatting floats.}
+   In order to apply the inputted value to some variable we must provide the memory address of that variable. This is done with the \texttt{\&} symbol. This allows \texttt{scanf} to place the number inputted into the variable.
+
+   \ex{Using \texttt{scanf}}{
+      \begin{align*}
+         \textnormal{\texttt{scanf("\%lf \%lf", \&num1, \&num2)}}
+      \end{align*}
+      When executed, this line would require the user to provide two floating point numbers, separated by a space. Afterwards, the values inputted by the user would be stored in the variables \texttt{num1} and \texttt{num2}.
+   }
+
+   \section{Types, Variables and Assignment Statements}
+
+   \subsection{Double Type}
+   An important thing to note with double types is that it only converts the final result to a double. This opposes Python which also converts outputs of division to float.
+   \ex{Unclear Division}{
+      The value of \texttt{double num} after the following line is executed, \texttt{num = 9/4;} is actually \texttt{2.0} instead of \texttt{2.5}. This is because division between integers does not automatically convert to a float type.
+   }
+
+   \section{Character Type}
+   The character type is specified with \texttt{char}. To define a character we can use the following:
+   \begin{itemize}
+      \item \texttt{'<character>'}: We can simply define a character by surrounding a single character with single quotations. 
+      \item Ascii: We can also simply provide an integer relating to some Ascii symbol:
+      \ex{}{
+         Running \texttt{char ch = 97}, makes \texttt{ch} equal to the chracter \textit{a}.
+      }
+   \end{itemize}
+
+
+    
+
+
+\end{document}
