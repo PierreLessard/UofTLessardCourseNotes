@@ -23,8 +23,4 @@
 \contentsline {subsection}{\numberline {3.3.2}Variance}{15}{subsection.3.3.2}%
 \contentsline {subsection}{\numberline {3.3.3}Properties of Expectation and Variance}{15}{subsection.3.3.3}%
 \contentsline {section}{\numberline {3.4}Cumulative Distribution Function}{16}{section.3.4}%
-\contentsline {chapter}{\numberline {4}Discrete Probability Distributions}{17}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Continuous Probability Distributions}{18}{chapter.5}%
-\contentsline {chapter}{\numberline {6}Multivariate Distributions}{19}{chapter.6}%
-\contentsline {chapter}{\numberline {7}Central Limit Theorem}{20}{chapter.7}%
 \contentsfinish 
