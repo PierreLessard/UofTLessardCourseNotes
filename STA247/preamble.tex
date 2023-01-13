@@ -33,6 +33,7 @@
 \usepackage{xifthen}
 \usepackage{pdfpages}
 \usepackage{transparent}
+\usepackage{lipsum}
 
 \newcommand\mycommfont[1]{\footnotesize\ttfamily\textcolor{blue}{#1}}
 \SetCommentSty{mycommfont}
@@ -491,6 +492,30 @@
 \makeatother
 
 %================================
+% Better Title
+%================================
+\makeatletter
+\def\@maketitle{%
+  \newpage
+  \null
+  \vskip 2em%
+  \begin{center}%
+  \let \footnote \thanks
+    {\LARGE \@title \par}%
+    \vskip 1.5em%
+    {\large
+      \lineskip .5em%
+      \begin{tabular}[t]{c}%
+        \@author
+      \end{tabular}\par}%
+    \vskip 1em%
+    %{\large \@date}%
+  \end{center}%
+  \par
+  \vskip 1.5em}
+\makeatother
+
+%================================
 % Question BOX
 %================================
 
@@ -594,12 +619,12 @@
 \newcommand{\clm}[3]{\begin{claim}{#1}{#2}#3\end{claim}}
 \newcommand{\wc}[2]{\begin{wconc}{#1}{}\setlength{\parindent}{1cm}#2\end{wconc}}
 \newcommand{\thmcon}[1]{\begin{Theoremcon}{#1}\end{Theoremcon}}
-\newcommand{\ex}[2]{\begin{Example}{#1}{}#2\end{Example}}
-\newcommand{\dfn}[2]{\begin{Definition}[colbacktitle=red!75!black]{#1}{}#2\end{Definition}}
+\newcommand{\ex}[2]{\vspace{.5cm}\begin{Example}{#1}{}#2\end{Example}}
+\newcommand{\dfn}[2]{\vspace{.5cm}\begin{Definition}[colbacktitle=red!75!black]{#1}{}#2\end{Definition}}
 \newcommand{\dfnc}[2]{\begin{definition}[colbacktitle=red!75!black]{#1}{}#2\end{definition}}
 \newcommand{\qs}[2]{\begin{question}{#1}{}#2\end{question}}
 \newcommand{\pf}[2]{\begin{myproof}[#1]#2\end{myproof}}
-\newcommand{\nt}[1]{\begin{note}#1\end{note}}
+\newcommand{\nt}[1]{\vspace{.5cm}\begin{note}#1\end{note}}
 
 \newcommand*\circled[1]{\tikz[baseline=(char.base)]{
 		\node[shape=circle,draw,inner sep=1pt] (char) {#1};}}
