@@ -1,0 +1,104 @@
+\documentclass{report}
+
+\input{preamble}
+\input{macros}
+\input{letterfonts}
+
+\title{ \Huge{CSC324}}
+\author{Pierre's Guide}
+\date{\huge{Fall 2022}}
+
+\definecolor{titlepagecolor}{cmyk}{1,.60,0,.40}
+\definecolor{namecolor}{cmyk}{1,.50,0,.10} 
+\begin{document}
+\begin{titlepage}
+
+    \newgeometry{left=7.5cm} %defines the geometry for the titlepage
+    \pagecolor{myb}
+    \noindent
+    \color{white}
+    \makebox[0pt][l]{\rule{1.3\textwidth}{1pt}}
+    \par
+    \noindent
+    \textbf{\Huge{CSC324}} \textsf{}
+    \vfill
+    \noindent
+    {\huge Pierre's Guide}
+    \vskip\baselineskip
+    \noindent
+    \huge{Fall 2022}
+    \end{titlepage}
+    \restoregeometry % restores the geometry
+    \nopagecolor% Use this to restore the color pages to white
+    % ----------------------------------------------------------------
+
+    \newpage
+    \pdfbookmark[section]{\contentsname}{toc}
+    \tableofcontents
+    \pagebreak
+
+    \chapter{Basics of Programming Languages}
+    \section{Syntax}
+
+    The syntax of a programming language are the rules on what expressions of the programming language can look like. The \textit{grammar} is used to specify the syntax of a programming language. These grammars are specified using \textit{terminal symbols} and \textbf{non-terminal symbols}. Terminal symbols are the most basic symbols.
+
+    \dfn{Terminal Symbol}{
+         Some literal symbol or collection of symbols that it not recursively defined.
+    }
+    \ex{Terminal Symbol}{
+         Imagine a programming language with a \textbf{terminal symbol} \texttt{NUMBER}. This represents any numeric literal. Such as $3, -1.5$ or $0$.
+    }
+
+    Non-terminal symbols are often used to express symbols which can be constructed from other terminal symbols and non-terminal symbols, including itself.
+
+    \dfn{Non-Terminal Symbols}{
+         These are symbols which generate valid expressions by substituting them with other grammar rules.
+    }
+    \ex{Non-Terminal Symbol}{
+      \texttt{<expr> = NUMBER | '(' <expr> <op> <expr> ')'} \\
+      In this example we define grammar for expressions which can be a number or nested expressions connected with an operation surrounded by parenthesis.
+    }
+    
+    \section{Abstract Syntax Trees}
+
+    A way to represent parsing in programming languages is to use \textbf{abstract syntax trees}. This is because syntax in language is usually hierarchical. We often have basic subexpressions and expressions which recursively uses other expressions. This means that a tree structure is appropriate for representing the order of how code should be parsed:
+
+    \dfn{Abstract Syntax Tree}{
+      \textbf{AST}s use the following structure to parse code:
+      \begin{enumerate}
+         \item A \textit{leaf} represents an expressions that has no subexpressions. An example being a terminal symbol or literal.
+         \item \textit{Internal nodes} represent a compound expression. This means this expression is built from smaller subexpressions.
+         \item Nodes are often categorized by the kind of expression they represent. This can be with a \textit{tag}, which uses an object oriented approach. Also, this can use a foreign concept, algebraic data types.
+         \item Node types often correspond to the grammar structure of a language. Meaning, if we expect a node type to contain subexpressions we should expect the grammar expressing that node type to include inputs for those subexpressions.
+      \end{enumerate}
+    }
+
+    \section{Semantics}
+
+    \subsection{Imperative Programming Languages}
+
+    Languages such as Python, Java, and C, are fundamentally \textit{imperative}. This means they are inspired by the Turing machine model of computation. Often defined as having programs organized around \textit{statements}. This model of computation tells the computer what to execute as a collection of instructions.
+
+    \subsection{Semantics}
+    The \textbf{semantics} of a languages refer to the rules governing the meaning of programs written in that language. So if \textbf{syntax} defines how a program should look, \textbf{semantics} define what the program does, given that the program follows the syntax. In python this would be equivalent to the meaning behind what \texttt{return} and \texttt{for} do (keywords). So, if a program is simplified to evaluating an expression, where the result is a value, the semantics define what the \textit{value} of the programs are.\\\\
+    This brings us to the concept of \textbf{denotational} vs \textbf{operational} semantics. Denotational semantics refers to the value of some program. This means two expressions, such as \texttt{10} and \texttt{3+7}, have the same denotational semantics if they have the same value, even if the process to get to that value is different. The \textit{evaluation} steps to achieve some value is denoted as the operational semantics. Operational semantics can be very complex in imperative languages, yet simple in functional.
+    \nt{There is another type of semantic called \textbf{axiomatic semantics}, these semantics focus on invariants similar to algorithmic analysis. So the axiomatic semantics of an expression focus on what is true about a piece of code}
+
+    \section{Lambda Calculus}
+    \textbf{Lambda calculus} is a model of computation in which expressions are the fundamental unit of computation. This means that programs in lambda calculus are a single expression, often containing subexpressions.
+
+    \dfn{The Lambda Calculus Expression}{
+      An expressions can be one of three things:
+      \begin{enumerate}
+         \item An \textbf{identifier}, such as $x$. Similar to variables in mathematics.
+         \item A \textbf{function expression}. Such as $\lambda x.x$, this expression takes one input, expressed after the $\lambda$, and one output, expressed after the $.$.
+         \item A \textbf{functional application}. Also known as function call. Example being \textit{f expr}, which would apply the function $f$ to the expression $expr$
+      \end{enumerate}
+    }
+
+    \nt{A strong concept of functional programming (lambda calculus), is that the only possible way to substitute programs is to substitute function calls with their value, as oppossed to programming languages where there are often many ways to substitute programs.}
+
+    
+
+
+\end{document}
