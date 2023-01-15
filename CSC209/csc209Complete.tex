@@ -267,7 +267,7 @@
       The value of \texttt{double num} after the following line is executed, \texttt{num = 9/4;} is actually \texttt{2.0} instead of \texttt{2.5}. This is because division between integers does not automatically convert to a float type.
    }
 
-   \section{Character Type}
+   \subsection{Character Type}
    The character type is specified with \texttt{char}. To define a character we can use the following:
    \begin{itemize}
       \item \texttt{'<character>'}: We can simply define a character by surrounding a single character with single quotations. 
@@ -277,6 +277,25 @@
       }
    \end{itemize}
 
+
+   \subsection{Arrays}
+   Arrays are defined for specifics types. This is done by including brackets at the end of a variable name, with the size in the brackets:
+   \dfn{Array}{
+      \texttt{<type> <variable\_name>[<array size>];} This defines an array which holds \texttt{<type>} and is of size \texttt{<array size>}. Specific indices, $i$, can be accessed with \texttt{<variable\_name>[i]}
+   }
+
+   \nt{Arrays are zero-indexed in C}
+
+   An important thing to remember with arrays in C is that there are no out of bound errors. Instead memory from another part of the program may be accessed and changed, sometimes it will raise a segmentation fault. Arrays can be defined faster using curly bracket notation:
+   \ex{Curly Bracket Notation}{
+      \texttt{int A[3] = {13, 55, 20};}
+   }
+
+
+
+   \section{Pointers}
+
+   Pointers are variables whose values are memory addresses to other value's memory addresses. The address of a variable is found using the \texttt{\&} symbols. The address of variable \texttt{x} would be \texttt{\&x}. To define a pointer we use the \texttt{*} symbol in the type deceleration before the variable name. \texttt{int *j;} would define a pointer with variable name \texttt{j}. To assign \texttt{j} a memory address we can do \texttt{j = \&x;}, this means that \texttt{j} points to the memory address of \texttt{x}. Afterwards, if we do \texttt{*j = 10}, then \texttt{x} would be equal to 10. This is because \texttt{*j}, after deceleration, accesses the memory address stored by \texttt{j}. This concept is important with functions, where we should pass memory addresses if we want to change the value of a variable within a function, and that function would have its parameters be pointers with the type of value we want inputted. Since pointers are memory addresses we can do pointer arithmetic on them. Where we do operations on the value of the pointer, slightly changing the memory address. This is useful for arrays when we know that there are more values at certain addresses relative to the array's address. Pointers to pointers are declared the same way as pointer except we use \texttt{**} instead of just one. This is useful in cases when we pass an array of pointers, since arrays are simply memory addresses, a pointer to this array of pointers would be a pointe to a pointer.
 
     
 
