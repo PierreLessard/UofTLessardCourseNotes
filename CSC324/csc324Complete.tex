@@ -98,6 +98,50 @@
 
     \nt{A strong concept of functional programming (lambda calculus), is that the only possible way to substitute programs is to substitute function calls with their value, as oppossed to programming languages where there are often many ways to substitute programs.}
 
+
+    \chapter{Racket}
+
+    \section{Racket Basics}
+
+    \subsection{Read-Eval-Print: Evaluation by substitution}
+
+    An expression is reduced to a value by repeatedly evaluating the outermost expression, and substituting its value.
+
+    \subsection{Name Bindings in Racket are immutable}
+    This follows the concept of \textbf{referential transparency}:
+
+    \dfn{Referential Transparency}{
+      An identifier is to be \textbf{referentially transparent} if the identifier can always be substituted for its value without changing the program's behavior.
+    }
+
+    \ex{Non Referentially Transparent Identifier}{
+      The python function, \texttt{localDate.time}, is not referentially transparent since it constantly changes.
+    }
+
+    \nt{
+      This is constant with all functions in pure functional languages. This means that a function, \texttt{f}, should always have the same output if it has the same arguments. Since variables are also immutable it means the loop statements are impossible. Instead we use recursion.
+    }
+
+    \subsection{Local Name Bindings with the \texttt{let} Expression}
+
+    Using \texttt{let} in Racket as its own block creates an expression which evaluates each line at different undefined points. Reassigning values during the \texttt{let} occurs after all of the statements have finished. Note the following statement:
+
+    \ex{Using let}{
+      (define a 100) 
+      (define b 100) \\
+      (define c 100) \\
+      (let (\[a 5\] \\
+      \[b (+ a a)\] \\
+      \[c (+ a b)\]) \\
+      (list a b c) )\\
+      The result to this is: (5 200 200)
+    }
+
+    \nt{This means that trying to use variables that are defined in the let, within other statements of let will be unable to determine the value and raise an error.}
+
+
+    
+
     
 
 
